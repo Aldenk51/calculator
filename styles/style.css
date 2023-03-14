@@ -22,11 +22,27 @@ body {
 
 #buttons {
   grid-row: 2;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+#numberButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / 4;
+  grid-row: 2 / 6;
 }
 
 #operationButtons {
+  display: grid;
   grid-column: 4;
-  grid-row: 1 / 7;
+  grid-row: 1 / 6;
+}
+
+#deleteButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column: 1 / 4;
+  grid-row: 1;
 }
