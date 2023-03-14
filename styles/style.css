@@ -1,0 +1,32 @@
+body {
+  display: flex;
+}
+
+#calculator {
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  background-color:midnightblue;
+  cursor: alias;
+  width: 360px;
+  height: 480px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#display {
+  grid-row: 1;
+  background-color: gray;
+}
+
+#buttons {
+  grid-row: 2;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#operationButtons {
+  grid-column: 4;
+  grid-row: 1 / 7;
+}
