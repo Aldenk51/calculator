@@ -13,11 +13,25 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 20px;
 }
 
 #display {
+  display: grid;
+  align-content: center;
+  justify-content: end;
+  font-size: xx-large;
   grid-row: 1;
+  border-radius: 20px;
+  height: 85%;
   background-color: gray;
+  color: lightblue;
+}
+
+#displayNumber {
+  position: relative;
+  right: 10px;
 }
 
 #buttons {
@@ -25,13 +39,32 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  gap: 1em;
 }
 
-#numberButtons {
+#numbers {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / 4;
   grid-row: 2 / 6;
+}
+
+.calcButton{
+  border-radius: 0px;
+  font-size: xx-large;
+}
+
+#zero, #equal, #clearAll{
+  border-bottom-left-radius: 20px;
+}
+#equal, #plusMinus, #delete{
+  border-bottom-right-radius: 20px;
+}
+#clearAll, #seven, #divide{
+  border-top-left-radius: 20px;
+}
+#divide, #delete, #nine{
+  border-top-right-radius: 20px;
 }
 
 #operationButtons {
