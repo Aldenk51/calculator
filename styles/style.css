@@ -2,6 +2,10 @@ body {
   display: flex;
 }
 
+button:active{
+  background-color: rgb(199, 199, 199);
+}
+
 #calculator {
   display: grid;
   grid-template-rows: 1fr 5fr;
@@ -21,7 +25,6 @@ body {
   display: grid;
   align-content: center;
   justify-content: end;
-  font-size: xx-large;
   grid-row: 1;
   border-radius: 20px;
   height: 85%;
@@ -32,6 +35,7 @@ body {
 #displayNumber {
   position: relative;
   right: 10px;
+  font-size: xxx-large;
 }
 
 #buttons {
