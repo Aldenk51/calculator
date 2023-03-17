@@ -1,7 +1,7 @@
 /**
  * Initialize
  */
-let mode = "", input1 = 0, input2 = 0;
+let mode = "", input1 = 0, input2 = 0, hasDecimal = false;
 let display = document.querySelector('#displayNumber');
 display.textContent = 0;
 
@@ -10,17 +10,15 @@ display.textContent = 0;
  */
 document.querySelectorAll('button').forEach(button => {button.addEventListener('click', buttonPress)});
 function buttonPress(e) {
-  switch(e.target.className) {
+  switch(e.target.classList[0]) {
     case 'numButton':
-      if(e.target == decimal) {
+      if(e.target.classList[1] == 'number') {
+        display.textContent[1] != '.' ? display.textContent = display.textContent.replace(/^0+?/, '') + e.target.textContent : display.textContent += e.target.textContent;
+      } else if (e.target == plusMinus) {
+        display.textContent[0] == '-' ? display.textContent = display.textContent.replace(/^-/, "") : display.textContent = '-' + display.textContent;
+      } else if (!hasDecimal) {
         display.textContent += '.';
-        this.removeEventListener('click', buttonPress);
-      } else if(e.target == plusMinus) {
-        input1 *= -1;
-        display.textContent = parseInt(input1);
-      } else {
-        input1 += e.target.textContent;
-        display.textContent = parseInt(input1);
+        hasDecimal = true;
       }
       break;
 
@@ -90,6 +88,7 @@ function clearAll() {
   mode = "";
   input1 = 0;
   input2 = 0;
+  hasDecimal = false;
   display.textContent = 0;
 }
 
