@@ -18,11 +18,11 @@ button:active{
   cursor: alias;
   width: 360px;
   height: 480px;
+  padding: 15px;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
   border-radius: 20px;
 }
 
@@ -30,9 +30,10 @@ button:active{
   display: grid;
   align-content: center;
   justify-content: end;
+  margin-bottom: 15px;
   grid-row: 1;
   border-radius: 20px;
-  height: 85%;
+  height: 100px;
   background-color: gray;
   color: lightblue;
 }
