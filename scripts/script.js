@@ -2,37 +2,63 @@
  * Initialize
  */
 let mode = "", input1 = 0, input2 = 0, hasDecimal = false;
-let display = document.querySelector('#displayNumber');
-display.textContent = 0;
+let display = document.querySelector('#displayNumber'), temp = '0';
+display.textContent = '0.';
 
 /**
  * Initialize button eventListener
  */
-document.querySelectorAll('button').forEach(button => {button.addEventListener('click', buttonPress)});
+document.querySelectorAll('button').forEach(button => { button.addEventListener('click', buttonPress) });
 function buttonPress(e) {
-  switch(e.target.classList[0]) {
+  switch (e.target.classList[0]) {
     case 'numButton':
-      if(e.target.classList[1] == 'number') {
-        display.textContent[1] != '.' ? display.textContent = display.textContent.replace(/^0+?/, '') + e.target.textContent : display.textContent += e.target.textContent;
+      if (e.target.classList[1] == 'number') {
+        temp[1] != '.' ? temp = temp.replace(/^0+?/, '') + e.target.textContent : temp += e.target.textContent;
       } else if (e.target == plusMinus) {
-        display.textContent[0] == '-' ? display.textContent = display.textContent.replace(/^-/, "") : display.textContent = '-' + display.textContent;
+        temp[0] == '-' ? temp = display.textContent.replace(/^-/, "") : temp = '-' + display.textContent;
       } else if (!hasDecimal) {
-        display.textContent += '.';
+        temp += '.';
         hasDecimal = true;
       }
+      updateDisplay();
       break;
 
     case 'opButton':
       break;
 
     case 'delButton':
-      if(e.target.id == 'clearAll') {
-        clearAll();
+      if (e.target.id == 'clearAll') {
+        mode = "";
+        input1 = 0;
+        input2 = 0;
+        temp = '0'
+        hasDecimal = false;
+        display.textContent = '';
+        setTimeout(() => { updateDisplay() }, 50);
+      } else if(temp.slice(-1) == '.'){
+        temp = temp.slice(0, -2);
+        hasDecimal = false;
+        updateDisplay();
+      } else {
+        temp = temp.slice(0, -1);
+        updateDisplay();
       }
       break;
-      
+
     default:
       break;
+  }
+}
+
+
+/**
+ * Updates the display
+ */
+function updateDisplay() {
+  if (hasDecimal) {
+    display.textContent = temp;
+  } else {
+    display.textContent = temp + '.';
   }
 }
 
@@ -44,7 +70,7 @@ function buttonPress(e) {
  * @returns input1 + input2
  */
 function add(input1, input2) {
-  return input1+input2;
+  return input1 + input2;
 }
 
 
@@ -55,7 +81,7 @@ function add(input1, input2) {
  * @returns input1 - input2
  */
 function subtract(input1, input2) {
-  return input1-input2;
+  return input1 - input2;
 }
 
 
@@ -66,7 +92,7 @@ function subtract(input1, input2) {
  * @returns input1 * input2
  */
 function multiply(input1, input2) {
-  return input1*input2;
+  return input1 * input2;
 }
 
 
@@ -77,20 +103,9 @@ function multiply(input1, input2) {
  * @returns input1 / input2
  */
 function divide(input1, input2) {
-  return input1/input2;
+  return input1 / input2;
 }
 
-
-/**
- * Reset calculator
- */
-function clearAll() {
-  mode = "";
-  input1 = 0;
-  input2 = 0;
-  hasDecimal = false;
-  display.textContent = 0;
-}
 
 
 /**
