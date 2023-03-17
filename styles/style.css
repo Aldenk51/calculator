@@ -2,6 +2,11 @@ body {
   display: flex;
 }
 
+button {
+  border-radius: 0px;
+  font-size: xx-large;
+}
+
 button:active{
   background-color: rgb(199, 199, 199);
 }
@@ -38,7 +43,7 @@ button:active{
   font-size: xxx-large;
 }
 
-#buttons {
+#buttonsContainer {
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -46,17 +51,13 @@ button:active{
   gap: 1em;
 }
 
-#numbers {
+#numberContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / 4;
   grid-row: 2 / 6;
 }
 
-.calcButton{
-  border-radius: 0px;
-  font-size: xx-large;
-}
 
 #zero, #equal, #clearAll{
   border-bottom-left-radius: 20px;
@@ -71,13 +72,13 @@ button:active{
   border-top-right-radius: 20px;
 }
 
-#operationButtons {
+#operationContainer {
   display: grid;
   grid-column: 4;
   grid-row: 1 / 6;
 }
 
-#deleteButtons {
+#deleteContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column: 1 / 4;
