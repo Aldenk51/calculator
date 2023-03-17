@@ -1,7 +1,7 @@
 /**
  * Initialize
  */
-let mode = "", input1 = 0, input2 = 0, hasDecimal = false;
+let mode = "", input1 = 0, input2 = 0, hasDecimal = false, hasNegative = false;
 let display = document.querySelector('#displayNumber'), temp = '0';
 display.textContent = '0.';
 
@@ -15,7 +15,7 @@ function buttonPress(e) {
       if (e.target.classList[1] == 'number') {
         temp[1] != '.' ? temp = temp.replace(/^0+?/, '') + e.target.textContent : temp += e.target.textContent;
       } else if (e.target == plusMinus) {
-        temp[0] == '-' ? temp = display.textContent.replace(/^-/, "") : temp = '-' + display.textContent;
+        hasNegative = !hasNegative;
       } else if (!hasDecimal) {
         temp += '.';
         hasDecimal = true;
@@ -33,16 +33,28 @@ function buttonPress(e) {
         input2 = 0;
         temp = '0'
         hasDecimal = false;
+        hasNegative = false;
         display.textContent = '';
         setTimeout(() => { updateDisplay() }, 50);
       } else if(temp.slice(-1) == '.'){
-        temp = temp.slice(0, -2);
+        temp = temp.slice(0, -1);
+        if(temp.length == 1) {
+          temp = '0';
+          hasNegative = false;
+        } else {
+          temp = temp.slice(0, -1);
+        }
         hasDecimal = false;
         updateDisplay();
-      } else {
+      } else if(temp.length > 1) {
         temp = temp.slice(0, -1);
         updateDisplay();
+      } else {
+        temp = '0'
+        hasNegative = false;
+        updateDisplay();
       }
+      console.log("Length: " + temp.length + " display: " + temp + " hasNegative: " + hasNegative+ " hasDecimal: " + hasDecimal);
       break;
 
     default:
@@ -54,12 +66,15 @@ function buttonPress(e) {
 /**
  * Updates the display
  */
-function updateDisplay() {
-  if (hasDecimal) {
+  function updateDisplay() {
     display.textContent = temp;
-  } else {
-    display.textContent = temp + '.';
+  if (!hasDecimal) {
+    display.textContent += '.';
   }
+  if (hasNegative) {
+    display.textContent = '-' + display.textContent;
+  }
+
 }
 
 
@@ -105,7 +120,6 @@ function multiply(input1, input2) {
 function divide(input1, input2) {
   return input1 / input2;
 }
-
 
 
 /**
